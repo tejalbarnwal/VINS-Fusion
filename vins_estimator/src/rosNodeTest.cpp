@@ -15,7 +15,8 @@
 #include <thread>
 #include <mutex>
 #include <ros/ros.h>
-#include <cv_bridge/cv_bridge.h>
+// #include <cv_bridge/cv_bridge.h>
+#include <cv_bridge_custom/cv_bridge.h>
 #include <opencv2/opencv.hpp>
 #include "estimator/estimator.h"
 #include "estimator/parameters.h"

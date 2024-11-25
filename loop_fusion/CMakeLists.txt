@@ -2,20 +2,22 @@ cmake_minimum_required(VERSION 2.8.3)
 project(loop_fusion)
 
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++14")
 #-DEIGEN_USE_MKL_ALL")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
+set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
+set(OpenCV_LIBRARIES "/usr/local/lib")
 
 find_package(catkin REQUIRED COMPONENTS
     roscpp
     std_msgs
     nav_msgs
     camera_models
-    cv_bridge
+    cv_bridge_custom
     roslib
     )
 
-find_package(OpenCV)
+find_package(OpenCV 4.5.2 REQUIRED)
 
 
 find_package(Ceres REQUIRED)
@@ -43,4 +45,5 @@ add_executable(loop_fusion_node
     src/ThirdParty/VocabularyBinary.cpp
     )
 
-target_link_libraries(loop_fusion_node ${catkin_LIBRARIES}  ${OpenCV_LIBS} ${CERES_LIBRARIES}) 
+target_link_libraries(loop_fusion_node ${catkin_LIBRARIES}  ${OpenCV_LIBRARIES} ${CERES_LIBRARIES}) 
+message(WARNING "OpenCV version: ${OpenCV_VERSION}")

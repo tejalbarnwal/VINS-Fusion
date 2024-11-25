@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(global_fusion)
 
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++14")
 #-DEIGEN_USE_MKL_ALL")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 
@@ -31,3 +31,4 @@ add_executable(global_fusion_node
 	src/globalOpt.cpp)
 
 target_link_libraries(global_fusion_node ${catkin_LIBRARIES} ${CERES_LIBRARIES} libGeographiccc) 
+message(WARNING "OpenCV version: ${OpenCV_VERSION}")

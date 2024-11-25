@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 2.8.3)
 project(camera_models)
 
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++14")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -fPIC")
+
+set(OpenCV_INCLUDE_DIRS "/usr/local/include/opencv4")
+set(OpenCV_LIBRARIES "/usr/local/lib")
 
 find_package(catkin REQUIRED COMPONENTS
     roscpp
@@ -13,7 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(Boost REQUIRED COMPONENTS filesystem program_options system)
 include_directories(${Boost_INCLUDE_DIRS})
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 4.5.2 REQUIRED)
 
 # set(EIGEN_INCLUDE_DIR "/usr/local/include/eigen3")
 find_package(Ceres REQUIRED)
@@ -64,5 +67,6 @@ add_library(camera_models
     src/gpl/gpl.cc
     src/gpl/EigenQuaternionParameterization.cc)
 
-target_link_libraries(Calibrations ${Boost_LIBRARIES} ${OpenCV_LIBS} ${CERES_LIBRARIES})
-target_link_libraries(camera_models ${Boost_LIBRARIES} ${OpenCV_LIBS} ${CERES_LIBRARIES})
+target_link_libraries(Calibrations ${Boost_LIBRARIES} ${OpenCV_LIBRARIES} ${CERES_LIBRARIES})
+target_link_libraries(camera_models ${Boost_LIBRARIES} ${OpenCV_LIBRARIES} ${CERES_LIBRARIES})
+message(WARNING "OpenCV version: ${OpenCV_VERSION}")
